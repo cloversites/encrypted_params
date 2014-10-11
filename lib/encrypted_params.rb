@@ -4,10 +4,10 @@ require 'json'
 require 'openssl'
 require 'symmetric-encryption'
 
-VALID_TIME = 60.seconds
-ENCRYPTED_PARAM_KEY = :encrypted_param
-
 module EncryptedParams
+  VALID_TIME = 60.seconds
+  ENCRYPTED_PARAM_KEY = :encrypted_param
+    
   def encrypt_params(params_hash={})
     
     data = {}.tap do |hsh|
