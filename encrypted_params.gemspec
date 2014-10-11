@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["support@cloversites.com"]
   spec.summary       = "Provides a simple method to send and receive encrypted data."
   spec.description   = ""
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/cloversites/encrypted_params"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -21,5 +21,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake", "~> 10.0"
   
-  sepc.add_dependency "symmetric-encryption", "~> 3.6"
+  sepc.add_runtime_dependency "symmetric-encryption", "~> 3.6"
 end
