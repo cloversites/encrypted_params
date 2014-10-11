@@ -29,6 +29,7 @@ Before sending your params encrypt them using encrypt_params. By default decrypt
 Make decrypt_params a before_action for the actions you plan to send this data to. The params will be validated and added to the params hash availble in the action.
 
 Example:
+```ruby
 class Sender
     def post_comment
         data = { thread: 1, text: 'Cool gem yo' }
@@ -42,6 +43,7 @@ class API
         # Access params as you normally would. the :thread and :text keys will be there.
     end
 end
+```
     
 
 ## Contributing
