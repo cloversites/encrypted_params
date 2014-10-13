@@ -11,7 +11,7 @@ decrypt_params does the reverse, but also adds the key, value pairs from the has
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'encrypted_params'
+gem 'encrypted_params', github: 'cloversites/encrypted_params'
 ```
 
 And then execute:
