@@ -1,0 +1,64 @@
+; EditorConfig is awesome: http://EditorConfig.org
+
+; top-most EditorConfig file
+root = true
+
+; Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+; Use 2 spaces for indentation in all Ruby files
+
+[*.rb]
+indent_style = space
+indent_size = 2
+
+[Rakefile]
+indent_style = space
+indent_size = 2
+
+[Gemfile*]
+indent_style = space
+indent_size = 2
+
+[config.ru]
+indent_style = space
+indent_size = 2
+
+[*.erb]
+indent_style = space
+indent_size = 2
+
+[*.eco]
+indent_style = space
+indent_size = 2
+insert_final_newline = false
+
+; Use 2 space indent for YAML
+[*.yml]
+indent_style = space
+indent_size = 2
+
+; Use 2 spaces for indentation in all Sass files
+[*.css]
+indent_style = space
+indent_size = 2
+
+[*.scss]
+indent_style = space
+indent_size = 2
+
+[*.sass]
+indent_style = space
+indent_size = 2
+
+; Use 2 spaces for indentation in all Coffeescript files
+
+[*.coffee]
+indent_style = space
+indent_size = 2
+
+[*.eco]
+indent_style = space
+indent_size = 2
