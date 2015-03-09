@@ -94,6 +94,3 @@ module EncryptedParams
     return hash.base64digest
   end
 end
-
-# Include the encrypted params functions in the base action controller.
-ActionController::Base.send :include, EncryptedParams

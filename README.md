@@ -31,6 +31,7 @@ Make decrypt_params a before_action for the actions you plan to send this data t
 Example:
 ```ruby
 class Sender
+    include EncryptedParams
     def post_comment
         data = { thread: 1, text: 'Cool gem yo' }
         HTTParty.post 'https://example.com/api/comment', EncryptedParams::ENCRYPTED_PARAM_KEY => encrypt_params(data)
@@ -38,6 +39,7 @@ class Sender
 end
 
 class API
+    include EncryptedParams
     before_action :decrypt_params, only: [:method]
     def method
         # Access params as you normally would. the :thread and :text keys will be there.
