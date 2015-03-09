@@ -36,8 +36,10 @@ module EncryptedParams
       logger.debug "Unauthorized due to failure to decrypt #{param}. Got error #{error}."
       return head :unauthorized
     else
-      logger.debug "Unauthorized due to SymmetricEncryption.decrypt #{param} returning nil"
-      return head :unauthorized if json.nil?
+      if json.nil?
+        logger.debug "Unauthorized due to SymmetricEncryption.decrypt #{param} returning nil"
+        return head :unauthorized
+      end
     end
     
     # Try to parse the json string and symbolize the keys.
