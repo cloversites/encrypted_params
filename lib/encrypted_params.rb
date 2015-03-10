@@ -73,7 +73,6 @@ module EncryptedParams
     
     # Get our original params and checksum them.
     original_params = secure_data[:params]
-    logger.debug "k #{original_params}"
     checksum = hash_digest original_params
     
     # Make sure the checksums match.
@@ -82,6 +81,7 @@ module EncryptedParams
       return head :unauthorized
     end
 
+    logger.debug "decrypted params: #{original_params}"
     # Update the params hash with the values of our original hash.
     original_params.each_pair do |key, value|
       params[key] = value
