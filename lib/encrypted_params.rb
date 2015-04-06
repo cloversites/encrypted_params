@@ -9,6 +9,7 @@ module EncryptedParams
   ENCRYPTED_PARAM_KEY = :encrypted_param
     
   def encrypt_params(params_hash={})
+    validEncoding?()
     
     data = {}.tap do |hsh|
       hsh[:params] = params_hash
@@ -18,10 +19,13 @@ module EncryptedParams
     end
     
     cypher_text = SymmetricEncryption.encrypt data.to_json, random_iv: true, type: :json
-    return Rack::Utils.escape_path cypher_text
+    # Url safe base 64 encoding.
+    return cypher_text.tr '+/', '-_'
   end
   
   def decrypt_params(param_key=ENCRYPTED_PARAM_KEY)
+    validEncoding?()
+    
     # Get our secure param.
     param = params.delete(param_key)
     if param.nil?
@@ -31,7 +35,7 @@ module EncryptedParams
     
     # Decrypt it into a json string.
     begin
-      json = SymmetricEncryption.decrypt param
+      json = SymmetricEncryption.decrypt param.tr('-_', '+/')
     rescue OpenSSL::Cipher::CipherError => error
       logger.debug "Unauthorized due to failure to decrypt #{param}. Got error #{error}."
       return head :unauthorized
@@ -94,5 +98,10 @@ module EncryptedParams
     hash = Digest::SHA256.new
     hash << hsh.to_json
     return hash.base64digest
+  end
+  
+  def validEncoding?()
+    return if SymmetricEncryption.cipher.encoding == :base64strict
+    raise "EncryptedParams requires that SymmetricEncryption use :base64strict as the encoding. It's configured as #{SymmetricEncryption.cipher.encoding} now."
   end
 end
